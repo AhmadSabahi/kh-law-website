@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تسجيل الدخول — شركة خالد الحبسي للمحاماة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --brand:#0F4C5C; --brand2:#15677D; --accent:#2E8CA3;
+  --ink:#15242A; --muted:#5E727B; --line:#E5ECEE; --bg:#EEF3F4; --card:#FFFFFF;
+  --info-bg:#E3F0F3; --info-tx:#0F4C5C;
+  --warn-bg:#FBF1DC; --warn-tx:#8A5A12;
+  --neut-bg:#EEF1F2; --neut-tx:#5E727B;
+  --radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Tajawal',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+.serif{font-family:'Amiri','Georgia',serif}
+button{font-family:inherit}
+.langToggle{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.4);font-size:13px;padding:6px 13px;border-radius:30px;cursor:pointer;transition:.18s}
+.langToggle:hover{background:rgba(255,255,255,.22)}
+
+#loginView{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+.login-card{width:100%;max-width:400px;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 14px 50px rgba(15,76,92,.12);animation:rise .5s ease}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.login-top{background:#F9F9F9;color:var(--ink);padding:30px 28px 22px;text-align:center;position:relative;border-bottom:1px solid var(--line)}
+.login-logo{max-width:215px;width:74%;height:auto;display:block;margin:0 auto}
+.login-sub-dark{font-size:13px;color:var(--muted);margin-top:14px}
+.loginLang{background:#fff;color:var(--brand);border:1px solid var(--line)}
+.loginLang:hover{background:#f4f7f8}
+.login-top .langToggle{position:absolute;top:14px;inset-inline-end:14px}
+.login-mono{width:60px;height:60px;margin:0 auto 14px;border:1.8px solid rgba(255,255,255,.55);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px}
+.login-name{font-size:22px;font-weight:700;line-height:1.3}
+.login-sub{font-size:13px;color:rgba(255,255,255,.72);margin-top:4px}
+.login-body{padding:26px 28px}
+.login-body h2{font-size:17px;font-weight:700;margin-bottom:18px;text-align:start}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px;text-align:start}
+.field input{width:100%;font-family:inherit;font-size:14px;padding:11px 14px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);text-align:start;transition:.18s}
+.field input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(46,140,163,.14)}
+.login-btn{width:100%;background:var(--brand);color:#fff;border:none;font-size:15px;font-weight:500;padding:12px;border-radius:10px;cursor:pointer;transition:.18s;margin-top:4px}
+.login-btn:hover{background:var(--brand2)}
+.login-note{font-size:12.5px;color:var(--muted);text-align:center;margin-top:16px}
+
+#appView{display:none;padding:28px 16px}
+.app{max-width:980px;margin:0 auto;background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:0 10px 40px rgba(15,76,92,.10);border:1px solid var(--line)}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;background:var(--brand);color:#fff;padding:18px 24px}
+.brand{display:flex;align-items:center;gap:14px}
+.mono{width:46px;height:46px;border:1.6px solid rgba(255,255,255,.55);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.header-logo{height:54px;width:auto;max-width:150px;background:#fff;border-radius:10px;padding:5px 9px;display:block;object-fit:contain}
+.fname{font-size:21px;font-weight:700;line-height:1.2}
+.fsub{font-size:12.5px;color:rgba(255,255,255,.72);margin-top:2px}
+.hright{display:flex;align-items:center;gap:10px}
+.login-info{display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.9)}
+.dot{width:8px;height:8px;border-radius:50%;background:#5FD08A;display:inline-block}
+.logout{background:none;border:none;color:rgba(255,255,255,.8);font-size:13px;cursor:pointer;display:inline-flex;align-items:center;gap:5px}
+.logout:hover{color:#fff}
+.remind{display:flex;align-items:center;gap:10px;background:var(--info-bg);color:var(--info-tx);font-size:13.5px;padding:12px 24px;border-bottom:1px solid var(--line)}
+.body{padding:22px 24px 26px}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:22px}
+.metric{background:var(--bg);border-radius:10px;padding:14px 16px}
+.metric .lbl{font-size:13px;color:var(--muted)}
+.metric .num{font-size:27px;font-weight:700;color:var(--brand);margin-top:3px}
+.tabs{display:flex;gap:6px;border-bottom:1px solid var(--line)}
+.tab{padding:11px 18px;border:none;background:none;font-size:15.5px;color:var(--muted);cursor:pointer;border-bottom:2.5px solid transparent;transition:.18s;font-weight:500}
+.tab:hover{color:var(--ink)}
+.tab.on{color:var(--brand);border-bottom-color:var(--accent)}
+.controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:18px 0}
+.search{flex:1;min-width:190px;position:relative}
+.search input{width:100%;font-family:inherit;font-size:14px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);text-align:start;transition:.18s}
+.search input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(46,140,163,.14)}
+.btn{font-family:inherit;font-size:14px;padding:10px 16px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:.18s;font-weight:500}
+.btn svg{width:17px;height:17px}
+.btn-p{background:var(--brand);color:#fff;border:1px solid var(--brand)}
+.btn-p:hover{background:var(--brand2)}
+.btn-o{background:#fff;color:var(--brand);border:1px solid var(--line)}
+.btn-o:hover{border-color:var(--accent);background:#fafdfd}
+.paste{display:none;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:18px}
+.paste.show{display:block;animation:rise .25s ease}
+.paste p{font-size:13.5px;color:var(--muted);margin-bottom:10px;text-align:start}
+.paste textarea{width:100%;font-family:inherit;font-size:14px;padding:11px;border:1px solid var(--line);border-radius:10px;resize:vertical;color:var(--ink);background:#fff;text-align:start}
+.paste textarea:focus{outline:none;border-color:var(--accent)}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
+th{text-align:start;font-weight:700;color:var(--muted);font-size:12.5px;padding:13px 16px;background:#fafcfc;border-bottom:1px solid var(--line);white-space:nowrap}
+td{text-align:start;padding:14px 16px;border-bottom:1px solid var(--line);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+tbody tr{transition:.15s}
+tbody tr:hover{background:#f7fbfb}
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:500;padding:4px 11px;border-radius:30px;white-space:nowrap}
+.c-info{background:var(--info-bg);color:var(--info-tx)}
+.c-warn{background:var(--warn-bg);color:var(--warn-tx)}
+.c-neut{background:var(--neut-bg);color:var(--neut-tx)}
+.confirm{font-family:inherit;font-size:12px;font-weight:500;padding:4px 11px;border-radius:8px;border:1px solid var(--accent);color:var(--brand);background:#fff;cursor:pointer;margin-inline-start:6px}
+.confirm:hover{background:var(--info-bg)}
+.cell-act{white-space:nowrap}
+.act{background:#fff;border:1px solid var(--line);border-radius:8px;padding:5px 7px;cursor:pointer;color:var(--muted);margin-inline-start:5px;transition:.15s;display:inline-flex;align-items:center;vertical-align:middle}
+.act:first-child{margin-inline-start:0}
+.act:hover{border-color:var(--accent);color:var(--brand);background:#fafdfd}
+.act svg{width:15px;height:15px}
+.act-del:hover{border-color:#C0392B;color:#C0392B;background:#fdf3f3}
+.foot{text-align:center;font-size:12px;color:var(--muted);margin-top:18px}
+.toast{position:fixed;top:24px;left:50%;transform:translateX(-50%) translateY(-20px);background:var(--brand);color:#fff;padding:12px 22px;border-radius:12px;font-size:14px;font-weight:500;box-shadow:0 8px 30px rgba(15,76,92,.3);opacity:0;pointer-events:none;transition:.3s;z-index:50}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.fbar{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}
+.fbtn{font-family:inherit;font-size:13px;padding:6px 14px;border-radius:30px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;transition:.15s}
+.fbtn:hover{border-color:var(--accent)}
+.fbtn.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+tr.r-today{background:#E8F4EC}
+tr.r-today:hover{background:#DFEFE5}
+tr.r-soon{background:#FBF4E3}
+tr.r-soon:hover{background:#F5ECD4}
+tr.r-late{background:#FBECEC}
+tr.r-late:hover{background:#F5E0E0}
+.flag{font-size:11px;font-weight:500;padding:2px 8px;border-radius:20px;margin-inline-start:6px;color:#fff;display:inline-block}
+.flag-today{background:#1D9E75}
+.flag-soon{background:#BA7517}
+.flag-late{background:#C0392B}
+.empty{display:none;text-align:center;color:var(--muted);font-size:14px;padding:34px 16px;border:1px dashed var(--line);border-radius:12px}
+.audit{display:none;background:var(--bg);border:1px solid var(--line);border-radius:12px;margin-bottom:18px;max-height:240px;overflow-y:auto}
+.audit.show{display:block}
+.audit-item{display:flex;gap:10px;align-items:center;padding:10px 16px;font-size:13px;border-bottom:1px solid var(--line)}
+.audit-item:last-child{border-bottom:none}
+.audit-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none}
+.audit-time{color:var(--muted);font-size:12px;margin-inline-start:auto;white-space:nowrap}
+.hidden{display:none}
+.formgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.ff label{display:block;font-size:13px;color:var(--muted);margin-bottom:5px;text-align:start}
+.ff input,.ff select{width:100%;font-family:inherit;font-size:14px;padding:9px 12px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink);text-align:start}
+.ff input:focus,.ff select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(46,140,163,.14)}
+@media(max-width:560px){.formgrid{grid-template-columns:1fr}}
+@media(max-width:560px){.metrics{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="root" dir="rtl">
+<div id="loginView">
+  <div class="login-card">
+    <div class="login-top">
+      <button class="langToggle loginLang" onclick="toggleLang()"><span class="lt">English</span></button>
+      <img class="login-logo" src="assets/logo.png" alt="شعار شركة خالد الحبسي للمحاماة">
+      <div class="login-sub-dark" data-ar="نظام إدارة الجلسات والاستشارات" data-en="Sessions & Consultations System">نظام إدارة الجلسات والاستشارات</div>
+    </div>
+    <div class="login-body">
+      <h2 data-ar="تسجيل الدخول" data-en="Sign in">تسجيل الدخول</h2>
+      <div class="field">
+        <label data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</label>
+        <input type="email" data-ar-ph="name@khlaw.om" data-en-ph="name@khlaw.om" placeholder="name@khlaw.om">
+      </div>
+      <div class="field">
+        <label data-ar="كلمة المرور" data-en="Password">كلمة المرور</label>
+        <input type="password" placeholder="••••••••">
+      </div>
+      <button class="login-btn" onclick="enterApp()"><span data-ar="دخول" data-en="Log in">دخول</span></button>
+      <p class="login-note" data-ar="الحسابات يُنشئها مسؤول المكتب" data-en="Accounts are created by the office admin">الحسابات يُنشئها مسؤول المكتب</p>
+    </div>
+  </div>
+</div>
+</div>
+<script>
+(function(){
+  var root=document.getElementById('root');
+  var lang=localStorage.getItem('kh_lang')||'ar';
+  function applyLang(){
+    root.querySelectorAll('[data-ar]').forEach(function(e){e.textContent=e.getAttribute('data-'+lang)});
+    root.querySelectorAll('[data-ar-ph]').forEach(function(e){e.placeholder=e.getAttribute('data-'+lang+'-ph')});
+    document.querySelectorAll('.lt').forEach(function(e){e.textContent=lang==='ar'?'English':'العربية'});
+  }
+  function setLang(l){lang=l;localStorage.setItem('kh_lang',l);root.dir=l==='ar'?'rtl':'ltr';document.documentElement.lang=l;applyLang();}
+  window.toggleLang=function(){setLang(lang==='ar'?'en':'ar')};
+  window.enterApp=function(){window.location.href='dashboard.html';};
+  setLang(lang);
+})();
+</script>
+</body>
+</html>
