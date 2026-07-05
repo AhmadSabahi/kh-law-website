@@ -9,22 +9,27 @@
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --brand:#0F4C5C; --brand2:#15677D; --accent:#2E8CA3;
-  --ink:#15242A; --muted:#5E727B; --line:#E5ECEE; --bg:#EEF3F4; --card:#FFFFFF;
-  --info-bg:#E3F0F3; --info-tx:#0F4C5C;
-  --warn-bg:#FBF1DC; --warn-tx:#8A5A12;
-  --neut-bg:#EEF1F2; --neut-tx:#5E727B;
-  --radius:14px;
+  --brand:#0E4A59; --brand2:#155F73; --accent:#2E8CA3;
+  --brand-grad:linear-gradient(135deg,#10505F 0%,#166A7F 100%);
+  --gold:#B8862F; --gold-soft:#F6EBD2;
+  --ink:#16262C; --muted:#5F7178; --line:#E4EBED; --bg:#EDF2F3; --card:#FFFFFF;
+  --info-bg:#E1EFF2; --info-tx:#0E4A59;
+  --warn-bg:#FBF0D8; --warn-tx:#8A5A12;
+  --neut-bg:#EDF1F2; --neut-tx:#5F7178;
+  --radius:16px;
+  --shadow-sm:0 2px 10px rgba(14,74,89,.06);
+  --shadow-md:0 12px 34px rgba(14,74,89,.10);
+  --shadow-lg:0 20px 54px rgba(14,74,89,.16);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Tajawal',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+body{font-family:'Tajawal',system-ui,sans-serif;background:linear-gradient(180deg,#EEF3F4 0%,#E4EBEC 100%);background-attachment:fixed;color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
 .serif{font-family:'Amiri','Georgia',serif}
 button{font-family:inherit}
 .langToggle{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.4);font-size:13px;padding:6px 13px;border-radius:30px;cursor:pointer;transition:.18s}
 .langToggle:hover{background:rgba(255,255,255,.22)}
 
 #loginView{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
-.login-card{width:100%;max-width:400px;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 14px 50px rgba(15,76,92,.12);animation:rise .5s ease}
+.login-card{width:100%;max-width:400px;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow-lg);animation:rise .5s ease}
 @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 .login-top{background:#F9F9F9;color:var(--ink);padding:30px 28px 22px;text-align:center;position:relative;border-bottom:1px solid var(--line)}
 .login-logo{max-width:215px;width:74%;height:auto;display:block;margin:0 auto}
@@ -41,8 +46,8 @@ button{font-family:inherit}
 .field label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px;text-align:start}
 .field input{width:100%;font-family:inherit;font-size:14px;padding:11px 14px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);text-align:start;transition:.18s}
 .field input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(46,140,163,.14)}
-.login-btn{width:100%;background:var(--brand);color:#fff;border:none;font-size:15px;font-weight:500;padding:12px;border-radius:10px;cursor:pointer;transition:.18s;margin-top:4px}
-.login-btn:hover{background:var(--brand2)}
+.login-btn{width:100%;background:var(--brand-grad);color:#fff;border:none;font-size:15px;font-weight:500;padding:13px;border-radius:11px;cursor:pointer;transition:.18s;margin-top:4px;box-shadow:0 6px 16px rgba(14,74,89,.22)}
+.login-btn:hover{filter:brightness(1.07);box-shadow:0 8px 20px rgba(14,74,89,.28)}
 .login-note{font-size:12.5px;color:var(--muted);text-align:center;margin-top:16px}
 
 #appView{display:none;padding:28px 16px}
