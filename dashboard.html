@@ -103,8 +103,6 @@ tbody tr:hover{background:#f7fbfb}
 .c-info{background:var(--info-bg);color:var(--info-tx)}
 .c-warn{background:var(--warn-bg);color:var(--warn-tx)}
 .c-neut{background:var(--neut-bg);color:var(--neut-tx)}
-.confirm{font-family:inherit;font-size:12px;font-weight:500;padding:4px 11px;border-radius:8px;border:1px solid var(--accent);color:var(--brand);background:#fff;cursor:pointer;margin-inline-start:6px}
-.confirm:hover{background:var(--info-bg)}
 .cell-act{white-space:nowrap}
 .act{background:#fff;border:1px solid var(--line);border-radius:8px;padding:5px 7px;cursor:pointer;color:var(--muted);margin-inline-start:5px;transition:.15s;display:inline-flex;align-items:center;vertical-align:middle}
 .act:first-child{margin-inline-start:0}
@@ -266,15 +264,8 @@ tr.r-late:hover{background:#F5E0E0}
             <div class="ff"><label data-ar="الموكّل" data-en="Client">الموكّل</label><input id="aj-client" type="text"></div>
             <div class="ff"><label data-ar="الخصم" data-en="Opponent">الخصم</label><input id="aj-opp" type="text"></div>
             <div class="ff"><label data-ar="رقم القضية" data-en="Case no.">رقم القضية</label><input id="aj-num" type="text"></div>
-            <div class="ff"><label data-ar="القاعة" data-en="Courtroom">القاعة</label><input id="aj-courtroom" type="number" min="0"></div>
-            <div class="ff"><label data-ar="الرول" data-en="Roll">الرول</label><input id="aj-roll" type="number" min="0"></div>
-            <div class="ff"><label data-ar="آخر قرار" data-en="Last ruling">آخر قرار</label><input id="aj-ruling" type="text"></div>
             <div class="ff"><label data-ar="الجلسة القادمة" data-en="Next hearing">الجلسة القادمة</label><input id="aj-next-date" type="date"></div>
-            <div class="ff"><label data-ar="الحالة" data-en="Status">الحالة</label><select id="aj-status">
-              <option value="upcoming" data-ar="قادمة" data-en="Upcoming">قادمة</option>
-              <option value="postponed" data-ar="مؤجلة" data-en="Postponed">مؤجلة</option>
-              <option value="closed" data-ar="منتهية" data-en="Closed">منتهية</option>
-            </select></div>
+            <div class="ff"><label data-ar="القرار النهائي" data-en="Final decision">القرار النهائي</label><input id="aj-final" type="text"></div>
           </div>
         </div>
         <div id="fields-i" style="display:none">
@@ -309,19 +300,17 @@ tr.r-late:hover{background:#F5E0E0}
             <th data-ar="الموكّل" data-en="Client">الموكّل</th>
             <th data-ar="الخصم" data-en="Opponent">الخصم</th>
             <th data-ar="رقم القضية" data-en="Case no.">رقم القضية</th>
-            <th data-ar="القاعة / الرول" data-en="Courtroom / Roll">القاعة / الرول</th>
-            <th data-ar="آخر قرار" data-en="Last ruling">آخر قرار</th>
             <th data-ar="الجلسة القادمة" data-en="Next hearing">الجلسة القادمة</th>
-            <th data-ar="الحالة" data-en="Status">الحالة</th>
+            <th data-ar="القرار النهائي" data-en="Final decision">القرار النهائي</th>
             <th data-ar="إجراءات" data-en="Actions">إجراءات</th>
           </tr></thead>
           <tbody id="tb-j">
-            <tr data-status="upcoming" data-date="2025-06-02"><td data-ar="محمد البادي" data-en="Mohammed Al Badi">محمد البادي</td><td data-ar="شركة النور" data-en="Al Noor Co.">شركة النور</td><td data-ar="2024/289" data-en="2024/289">2024/289</td><td data-ar="3/12" data-en="3/12">3/12</td><td data-ar="بانتظار التحديث" data-en="Awaiting update">بانتظار التحديث</td><td data-ar="2/6/2025" data-en="2/6/2025">2/6/2025</td><td><span class="chip c-info" data-ar="قادمة" data-en="Upcoming">قادمة</span></td></tr>
-            <tr data-status="upcoming" data-date="2025-06-05"><td data-ar="مؤسسة ظفار للتجارة" data-en="Dhofar Trading Est.">مؤسسة ظفار للتجارة</td><td data-ar="شركة الساحل" data-en="Al Sahel Co.">شركة الساحل</td><td data-ar="2025/120" data-en="2025/120">2025/120</td><td data-ar="1/7" data-en="1/7">1/7</td><td data-ar="مرافعة" data-en="Pleading">مرافعة</td><td data-ar="5/6/2025" data-en="5/6/2025">5/6/2025</td><td><span class="chip c-info" data-ar="قادمة" data-en="Upcoming">قادمة</span></td></tr>
-            <tr data-status="upcoming" data-date="2025-06-06"><td data-ar="شركة الواحة للتجارة" data-en="Al Waha Trading Co.">شركة الواحة للتجارة</td><td data-ar="مؤسسة النخيل" data-en="Al Nakheel Est.">مؤسسة النخيل</td><td data-ar="2025/47" data-en="2025/47">2025/47</td><td data-ar="5/23" data-en="5/23">5/23</td><td data-ar="تأجيل لتقديم مذكرة" data-en="Adjourned for memo">تأجيل لتقديم مذكرة</td><td data-ar="6/6/2025" data-en="6/6/2025">6/6/2025</td><td><span class="chip c-info" data-ar="قادمة" data-en="Upcoming">قادمة</span></td></tr>
-            <tr data-status="upcoming" data-date="2025-06-12"><td data-ar="أحمد بن سالم الحارثي" data-en="Ahmed Al Harthy">أحمد بن سالم الحارثي</td><td data-ar="بنك الخليج" data-en="Gulf Bank">بنك الخليج</td><td data-ar="2024/312" data-en="2024/312">2024/312</td><td data-ar="2/4" data-en="2/4">2/4</td><td data-ar="حجز للحكم" data-en="Reserved for judgment">حجز للحكم</td><td data-ar="12/6/2025" data-en="12/6/2025">12/6/2025</td><td><span class="chip c-info" data-ar="قادمة" data-en="Upcoming">قادمة</span></td></tr>
-            <tr data-status="postponed" data-date="2025-07-20"><td data-ar="مؤسسة بهلاء للمقاولات" data-en="Bahla Contracting">مؤسسة بهلاء للمقاولات</td><td data-ar="شركة الإنشاء الحديث" data-en="Modern Construction">شركة الإنشاء الحديث</td><td data-ar="2025/88" data-en="2025/88">2025/88</td><td data-ar="4/18" data-en="4/18">4/18</td><td data-ar="تأجيل" data-en="Adjourned">تأجيل</td><td data-ar="20/7/2025" data-en="20/7/2025">20/7/2025</td><td><span class="chip c-warn" data-ar="مؤجلة" data-en="Postponed">مؤجلة</span></td></tr>
-            <tr data-status="closed" data-date=""><td data-ar="خديجة الراشدي" data-en="Khadija Al Rashdi">خديجة الراشدي</td><td data-ar="ورثة المرحوم" data-en="The heirs">ورثة المرحوم</td><td data-ar="2023/201" data-en="2023/201">2023/201</td><td data-ar="لا يوجد" data-en="None">لا يوجد</td><td data-ar="صدر الحكم" data-en="Judgment issued">صدر الحكم</td><td data-ar="لا يوجد" data-en="None">لا يوجد</td><td><span class="chip c-neut" data-ar="منتهية" data-en="Closed">منتهية</span></td></tr>
+            <tr data-date="2025-06-02"><td data-ar="محمد البادي" data-en="Mohammed Al Badi">محمد البادي</td><td data-ar="شركة النور" data-en="Al Noor Co.">شركة النور</td><td data-ar="2024/289" data-en="2024/289">2024/289</td><td data-ar="2/6/2025" data-en="2/6/2025">2/6/2025</td><td data-ar="لا يوجد" data-en="None">لا يوجد</td></tr>
+            <tr data-date="2025-06-05"><td data-ar="مؤسسة ظفار للتجارة" data-en="Dhofar Trading Est.">مؤسسة ظفار للتجارة</td><td data-ar="شركة الساحل" data-en="Al Sahel Co.">شركة الساحل</td><td data-ar="2025/120" data-en="2025/120">2025/120</td><td data-ar="5/6/2025" data-en="5/6/2025">5/6/2025</td><td data-ar="لا يوجد" data-en="None">لا يوجد</td></tr>
+            <tr data-date="2025-06-06"><td data-ar="شركة الواحة للتجارة" data-en="Al Waha Trading Co.">شركة الواحة للتجارة</td><td data-ar="مؤسسة النخيل" data-en="Al Nakheel Est.">مؤسسة النخيل</td><td data-ar="2025/47" data-en="2025/47">2025/47</td><td data-ar="6/6/2025" data-en="6/6/2025">6/6/2025</td><td data-ar="لا يوجد" data-en="None">لا يوجد</td></tr>
+            <tr data-date="2025-06-12"><td data-ar="أحمد بن سالم الحارثي" data-en="Ahmed Al Harthy">أحمد بن سالم الحارثي</td><td data-ar="بنك الخليج" data-en="Gulf Bank">بنك الخليج</td><td data-ar="2024/312" data-en="2024/312">2024/312</td><td data-ar="12/6/2025" data-en="12/6/2025">12/6/2025</td><td data-ar="لا يوجد" data-en="None">لا يوجد</td></tr>
+            <tr data-date="2025-07-20"><td data-ar="مؤسسة بهلاء للمقاولات" data-en="Bahla Contracting">مؤسسة بهلاء للمقاولات</td><td data-ar="شركة الإنشاء الحديث" data-en="Modern Construction">شركة الإنشاء الحديث</td><td data-ar="2025/88" data-en="2025/88">2025/88</td><td data-ar="20/7/2025" data-en="20/7/2025">20/7/2025</td><td data-ar="لا يوجد" data-en="None">لا يوجد</td></tr>
+            <tr data-date=""><td data-ar="خديجة الراشدي" data-en="Khadija Al Rashdi">خديجة الراشدي</td><td data-ar="ورثة المرحوم" data-en="The heirs">ورثة المرحوم</td><td data-ar="2023/201" data-en="2023/201">2023/201</td><td data-ar="لا يوجد" data-en="None">لا يوجد</td><td data-ar="صدر الحكم" data-en="Judgment issued">صدر الحكم</td></tr>
           </tbody>
         </table></div>
       </div>
@@ -431,12 +420,13 @@ tr.r-late:hover{background:#F5E0E0}
   document.getElementById('dr-to').addEventListener('change',function(){PAGE[activeTab()].page=1;filter();});
   document.getElementById('dr-clear').addEventListener('click',function(){clearDateRange();PAGE[activeTab()].page=1;filter();});
 
-  var SFILTERS=[['all','الكل','All'],['upcoming','قادمة','Upcoming'],['postponed','مؤجلة','Postponed'],['closed','منتهية','Closed']];
   var IFILTERS=[['all','الكل','All'],['confirmed','مؤكدة','Confirmed'],['pending','بانتظار','Pending'],['done','تمت','Done']];
   function renderFilterBar(){
-    var arr=activeTab()==='j'?SFILTERS:IFILTERS;
+    // sessions tab has no status anymore -> no filter buttons
     fbar.innerHTML='';
-    arr.forEach(function(f){
+    if(activeTab()==='j'){fbar.style.display='none';return;}
+    fbar.style.display='';
+    IFILTERS.forEach(function(f){
       var b=document.createElement('button');b.className='fbtn'+(activeFilter===f[0]?' on':'');
       b.textContent=lang==='ar'?f[1]:f[2];
       b.addEventListener('click',function(){activeFilter=f[0];PAGE[activeTab()].page=1;renderFilterBar();filter()});
@@ -444,18 +434,24 @@ tr.r-late:hover{background:#F5E0E0}
     });
   }
 
+  // a session is finished once it has a real final decision (not "لا يوجد"/"None")
+  function hasFinal(r){
+    var c=r.children[4]; if(!c)return false;
+    var t=(c.getAttribute('data-ar')||c.textContent).trim();
+    return t!==''&&t!=='لا يوجد'&&t!=='None';
+  }
   function decorateSessions(){
     secJ.querySelectorAll('tbody tr').forEach(function(r){
       r.classList.remove('r-today','r-soon','r-late');
       var f=r.querySelector('.flag'); if(f)f.remove();
-      if(r.dataset.status!=='upcoming'||!r.dataset.date)return;
+      if(!r.dataset.date||hasFinal(r))return;
       var d=diffDays(r.dataset.date); var cls,ar,en;
       if(d<0){cls='r-late';ar='متأخرة';en='Overdue'}
       else if(d===0){cls='r-today';ar='اليوم';en='Today'}
       else if(d===1){cls='r-soon';ar='غداً';en='Tomorrow'}
       else return;
       r.classList.add(cls);
-      var cell=r.querySelector('.chip').parentNode;
+      var cell=r.children[3]; // next-hearing cell
       var fl=document.createElement('span');fl.className='flag flag-'+cls.split('-')[1];
       fl.setAttribute('data-ar',ar);fl.setAttribute('data-en',en);fl.textContent=lang==='ar'?ar:en;
       cell.appendChild(fl);
@@ -491,7 +487,7 @@ tr.r-late:hover{background:#F5E0E0}
     var db=dateBounds();
     var out=[];
     body.querySelectorAll('tbody tr').forEach(function(r){
-      if(activeFilter!=='all'&&r.dataset.status!==activeFilter)return;
+      if(activeTab()==='i'&&activeFilter!=='all'&&r.dataset.status!==activeFilter)return;
       if(q&&rowHaystack(r).indexOf(q)===-1)return;
       if(db.from||db.to){
         var d=r.dataset.date;
@@ -531,7 +527,7 @@ tr.r-late:hover{background:#F5E0E0}
     var bar=document.getElementById('remindBar'), span=document.getElementById('remindText');
     var best=null, bestDiff=Infinity;
     Array.prototype.forEach.call(document.getElementById('tb-j').children,function(r){
-      if(r.dataset.status!=='upcoming'||!r.dataset.date)return;
+      if(!r.dataset.date||hasFinal(r))return;
       var d=diffDays(r.dataset.date);
       if(d>=0&&d<bestDiff){bestDiff=d;best=r;}
     });
@@ -633,6 +629,21 @@ tr.r-late:hover{background:#F5E0E0}
     return {headers:headers,rows:rows};
   }
   function fileStamp(){var d=new Date();return d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate());}
+  // header lines at the top of sessions exports: "weekday, date — client count" (+ period if a range is set)
+  function exportHeaderLines(snap){
+    if(activeTab()!=='j')return [];
+    var now=new Date();
+    var wd=now.toLocaleDateString(lang==='ar'?'ar':'en-GB',{weekday:'long'});
+    var dstr=now.getFullYear()+'/'+pad(now.getMonth()+1)+'/'+pad(now.getDate());
+    var lines=[lang==='ar'?(wd+'، '+dstr+' — عدد الموكّلين: '+snap.rows.length):(wd+', '+dstr+' — Clients: '+snap.rows.length)];
+    var db=dateBounds();
+    if(db.from||db.to){
+      var f=db.from?isoToDM(db.from):'', t=db.to?isoToDM(db.to):'';
+      if(lang==='ar')lines.push('الفترة: '+(f&&t?('من '+f+' إلى '+t):(f?('من '+f):('حتى '+t))));
+      else lines.push('Period: '+(f&&t?('from '+f+' to '+t):(f?('from '+f):('until '+t))));
+    }
+    return lines;
+  }
   function noRowsGuard(snap){
     if(snap.rows.length===0){showToast('لا توجد نتائج للتصدير','No results to export');return true;}
     return false;
@@ -656,12 +667,14 @@ tr.r-late:hover{background:#F5E0E0}
     var dir=lang==='ar'?'rtl':'ltr';
     var when=(lang==='ar'?'تاريخ الطباعة: ':'Printed: ')+new Date().toLocaleString(lang==='ar'?'ar':'en-GB');
     var count=(lang==='ar'?'عدد السجلات: ':'Records: ')+snap.rows.length;
+    var head=exportHeaderLines(snap);
+    var meta=head.length?head.map(esc).join('<br>'):(esc(count)+' — '+esc(when));
     var w=window.open('','_blank');
     if(!w){showToast('السماح بالنوافذ المنبثقة للطباعة','Allow pop-ups to print');return;}
     w.document.write('<!doctype html><html dir="'+dir+'" lang="'+lang+'"><head><meta charset="utf-8"><title>'+esc(sectionTitle())+'</title>'+
-      '<style>*{font-family:Tajawal,Arial,sans-serif}body{margin:24px;color:#15242A;background:#fff}h1{font-size:20px;margin:0 0 4px}.meta{font-size:12px;color:#5E727B;margin-bottom:16px}'+
+      '<style>*{font-family:Tajawal,Arial,sans-serif}body{margin:24px;color:#15242A;background:#fff}h1{font-size:20px;margin:0 0 4px}.meta{font-size:13px;color:#3C5058;margin-bottom:16px;line-height:1.8}'+
       'table{width:100%;border-collapse:collapse;font-size:13px}th,td{border:1px solid #cfd9dc;padding:8px 10px;text-align:'+(lang==='ar'?'right':'left')+'}th{background:#0F4C5C;color:#fff}tr:nth-child(even) td{background:#f4f8f9}</style></head><body>'+
-      '<h1>'+esc(sectionTitle())+'</h1><div class="meta">'+esc(count)+' — '+esc(when)+'</div>'+
+      '<h1>'+esc(sectionTitle())+'</h1><div class="meta">'+meta+'</div>'+
       buildPrintTable(snap)+
       '<scr'+'ipt>window.onload=function(){window.focus();window.print();}</scr'+'ipt></body></html>');
     w.document.close();
@@ -669,7 +682,11 @@ tr.r-late:hover{background:#F5E0E0}
   function doExcel(){
     var snap=tableSnapshot();if(noRowsGuard(snap))return;
     if(typeof XLSX==='undefined'){showToast('تعذّر تحميل مكتبة الإكسل، تحقّق من الاتصال','Excel library failed to load, check connection');return;}
-    var aoa=[snap.headers].concat(snap.rows);
+    var head=exportHeaderLines(snap);
+    var aoa=head.map(function(l){return [l]});
+    if(head.length)aoa.push([]);
+    aoa.push(snap.headers);
+    aoa=aoa.concat(snap.rows);
     var ws=XLSX.utils.aoa_to_sheet(aoa);
     ws['!cols']=snap.headers.map(function(){return {wch:18};});
     var wb=XLSX.utils.book_new();
@@ -684,6 +701,8 @@ tr.r-late:hover{background:#F5E0E0}
     var dir=lang==='ar'?'rtl':'ltr';
     var when=(lang==='ar'?'تاريخ الطباعة: ':'Printed: ')+new Date().toLocaleString(lang==='ar'?'ar':'en-GB');
     var count=(lang==='ar'?'عدد السجلات: ':'Records: ')+snap.rows.length;
+    var head=exportHeaderLines(snap);
+    var meta=head.length?head.map(function(l){return nbsp(esc(l))}).join('<br>'):(nbsp(esc(count))+' — '+nbsp(esc(when)));
     // hidden clipping wrapper (height:0) keeps the holder off-view while html2canvas
     // still measures the holder's true height (a fixed/absolute holder would capture as 0px).
     var wrap=document.createElement('div');
@@ -692,7 +711,7 @@ tr.r-late:hover{background:#F5E0E0}
     holder.style.cssText='width:1040px;background:#fff;padding:24px';
     holder.setAttribute('dir',dir);
     holder.innerHTML='<h1 style="font-family:Tajawal,Arial,sans-serif;font-size:20px;margin:0 0 4px;color:#15242A">'+nbsp(esc(sectionTitle()))+'</h1>'+
-      '<div style="font-family:Tajawal,Arial,sans-serif;font-size:12px;color:#5E727B;margin-bottom:16px">'+nbsp(esc(count))+' — '+nbsp(esc(when))+'</div>'+
+      '<div style="font-family:Tajawal,Arial,sans-serif;font-size:13px;color:#3C5058;margin-bottom:16px;line-height:1.8">'+meta+'</div>'+
       '<style>#pdfH table{width:100%;border-collapse:collapse;font-family:Tajawal,Arial,sans-serif;font-size:13px}#pdfH th,#pdfH td{border:1px solid #cfd9dc;padding:8px 10px;text-align:'+(lang==='ar'?'right':'left')+'}#pdfH th{background:#0F4C5C;color:#fff}#pdfH tr:nth-child(even) td{background:#f4f8f9}</style>'+
       '<div id="pdfH">'+buildPrintTable(snap,nbsp)+'</div>';
     wrap.appendChild(holder);document.body.appendChild(wrap);
@@ -711,25 +730,18 @@ tr.r-late:hover{background:#F5E0E0}
     document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
     document.querySelector('.tab[data-t="j"]').classList.add('on');secJ.classList.remove('hidden');secI.classList.add('hidden');
     activeFilter='all';updateTabUI();renderFilterBar();
-    var tr=document.createElement('tr');tr.dataset.status='upcoming';tr.dataset.date='2025-06-25';
-    tr.innerHTML='<td data-ar="شركة الأمل ش.م.م" data-en="Al Amal LLC"></td><td data-ar="مؤسسة الفجر" data-en="Al Fajr Est."></td><td data-ar="2025/104" data-en="2025/104"></td><td data-ar="4/9" data-en="4/9"></td><td data-ar="جلسة أولى" data-en="First hearing"></td><td data-ar="25/6/2025" data-en="25/6/2025"></td><td><span class="chip c-warn" data-ar="بانتظار التأكيد" data-en="Pending confirmation"></span><button class="confirm"><span data-ar="تأكيد" data-en="Confirm"></span></button></td>';
+    var tr=document.createElement('tr');tr.dataset.date='2025-06-25';
+    tr.innerHTML='<td data-ar="شركة الأمل ش.م.م" data-en="Al Amal LLC"></td><td data-ar="مؤسسة الفجر" data-en="Al Fajr Est."></td><td data-ar="2025/104" data-en="2025/104"></td><td data-ar="25/6/2025" data-en="25/6/2025"></td><td data-ar="لا يوجد" data-en="None"></td>';
     addActionsCell(tr);document.getElementById('tb-j').prepend(tr);applyLang(tr);
     document.getElementById('pastePanel').classList.remove('show');
     refresh();logAudit('المحامي خالد أضاف جلسة عبر اللصق','Khalid added a hearing via paste');
-    showToast('تمت إضافة الجلسة، بانتظار تأكيدك','Hearing added, pending your confirmation');
-  });
-  document.getElementById('tb-j').addEventListener('click',function(e){
-    var c=e.target.closest('.confirm');if(!c)return;var cell=c.parentNode;
-    cell.innerHTML='<span class="chip c-info" data-ar="قادمة" data-en="Upcoming"></span>';applyLang(cell);
-    refresh();logAudit('المحامي خالد أكّد جلسة','Khalid confirmed a hearing');
-    showToast('تم تأكيد الجلسة','Hearing confirmed');
+    showToast('تمت إضافة الجلسة','Hearing added');
   });
 
   document.getElementById('addBtn').addEventListener('click',function(){document.getElementById('pastePanel').classList.remove('show');var ap=document.getElementById('addPanel');if(ap.classList.contains('show')){ap.classList.remove('show');}else{resetEditState();clearAddForm();ap.classList.add('show');}});
   function v(id){return document.getElementById(id).value.trim()}
   function tdBoth(ar,en){var d=document.createElement('td');d.setAttribute('data-ar',ar);d.setAttribute('data-en',en);d.textContent=lang==='ar'?ar:en;return d}
   function tdChip(ar,en,cls){var d=document.createElement('td');var s=document.createElement('span');s.className='chip '+cls;s.setAttribute('data-ar',ar);s.setAttribute('data-en',en);s.textContent=lang==='ar'?ar:en;d.appendChild(s);return d}
-  var SST={upcoming:['قادمة','Upcoming','c-info'],postponed:['مؤجلة','Postponed','c-warn'],closed:['منتهية','Closed','c-neut']};
   var CST={confirmed:['مؤكدة','Confirmed','c-info'],pending:['بانتظار','Pending','c-warn'],done:['تمت','Done','c-neut']};
   var CTY={office:['في المكتب','In office'],phone:['هاتف','Phone']};
   var CPAY={transfer:['تحويل بنكي','Bank transfer'],office:['بالمكتب','At office']};
@@ -748,7 +760,8 @@ tr.r-late:hover{background:#F5E0E0}
     while(tr.firstChild)tr.removeChild(tr.firstChild);
     cells.forEach(function(td){tr.appendChild(td)});
     tr.appendChild(act||tdActions());
-    tr.dataset.status=status;tr.dataset.date=iso||'';
+    if(status){tr.dataset.status=status}else{tr.removeAttribute('data-status')}
+    tr.dataset.date=iso||'';
   }
   function goTab(t){
     document.querySelectorAll('.tab').forEach(function(x){x.classList.toggle('on',x.dataset.t===t)});
@@ -757,8 +770,8 @@ tr.r-late:hover{background:#F5E0E0}
   }
   function setSubmitLabel(ar,en){var s=document.querySelector('#addSubmit span');s.setAttribute('data-ar',ar);s.setAttribute('data-en',en);s.textContent=lang==='ar'?ar:en;}
   function clearAddForm(){
-    ['aj-client','aj-opp','aj-num','aj-courtroom','aj-roll','aj-ruling','aj-next-date','ai-name','ai-phone','ai-time'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
-    ['aj-status','ai-type','ai-pay','ai-status'].forEach(function(id){var el=document.getElementById(id);if(el)el.selectedIndex=0;});
+    ['aj-client','aj-opp','aj-num','aj-next-date','aj-final','ai-name','ai-phone','ai-time'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
+    ['ai-type','ai-pay','ai-status'].forEach(function(id){var el=document.getElementById(id);if(el)el.selectedIndex=0;});
   }
   function resetEditState(){editRow=null;setSubmitLabel('إضافة للجدول','Add to table');}
   function onDel(tr){
@@ -778,12 +791,8 @@ tr.r-late:hover{background:#F5E0E0}
       document.getElementById('aj-client').value=g(0);
       document.getElementById('aj-opp').value=nl(g(1));
       document.getElementById('aj-num').value=nl(g(2));
-      var cr=nl(g(3)).split('/');
-      document.getElementById('aj-courtroom').value=cr[0]?cr[0].trim():'';
-      document.getElementById('aj-roll').value=cr[1]?cr[1].trim():'';
-      document.getElementById('aj-ruling').value=nl(g(4));
       document.getElementById('aj-next-date').value=tr.dataset.date||'';
-      document.getElementById('aj-status').value=tr.dataset.status;
+      document.getElementById('aj-final').value=nl(g(4));
     }else{
       document.getElementById('ai-name').value=g(0);
       document.getElementById('ai-phone').value=nl(g(1));
@@ -801,27 +810,22 @@ tr.r-late:hover{background:#F5E0E0}
     var isEdit=!!editRow, cells, status, iso;
     if(activeTab()==='j'){
       var c=v('aj-client');if(!c){document.getElementById('aj-client').focus();return}
-      var k=document.getElementById('aj-status').value, st=SST[k];
-      var pick=document.getElementById('aj-next-date').value;
-      iso=(k==='closed')?'':pick;
+      iso=document.getElementById('aj-next-date').value;
       var dm=iso?isoToDM(iso):'';
-      var court=v('aj-courtroom'),roll=v('aj-roll');
-      var cr=(court&&roll)?court+'/'+roll:(court||roll||'');
-      status=k;
+      var fin=v('aj-final');
+      status='';
       cells=[
         tdBoth(c,c),
         tdBoth(v('aj-opp')||'لا يوجد',v('aj-opp')||'None'),
         tdBoth(v('aj-num')||'لا يوجد',v('aj-num')||'None'),
-        tdBoth(cr||'لا يوجد',cr||'None'),
-        tdBoth(v('aj-ruling')||'لا يوجد',v('aj-ruling')||'None'),
         tdBoth(dm||'لا يوجد',dm||'None'),
-        tdChip(st[0],st[1],st[2])
+        tdBoth(fin||'لا يوجد',fin||'None')
       ];
       if(isEdit){
         commitRow(editRow,cells,status,iso);applyLang(editRow);
         logAudit(CURRENT_USER.ar+' عدّل جلسة',CURRENT_USER.en+' edited a hearing');
       }else{
-        var tr=document.createElement('tr');tr.dataset.status=status;tr.dataset.date=iso;
+        var tr=document.createElement('tr');tr.dataset.date=iso;
         cells.forEach(function(td){tr.appendChild(td)});addActionsCell(tr);
         document.getElementById('tb-j').prepend(tr);applyLang(tr);
         logAudit(CURRENT_USER.ar+' أضاف جلسة',CURRENT_USER.en+' added a hearing');
