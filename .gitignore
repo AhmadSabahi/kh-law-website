@@ -1,4 +1,5 @@
 .DS_Store
 scratchpad/
 backend/.secrets.local
+backend/.wrangler/
 node_modules/
