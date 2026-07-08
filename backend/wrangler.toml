@@ -1,0 +1,12 @@
+name = "kh-law-whatsapp"
+main = "worker.js"
+compatibility_date = "2026-07-01"
+
+# Secrets are NOT stored here. After `npx wrangler login`, set them with:
+#   npx wrangler secret put META_TOKEN
+#   npx wrangler secret put PHONE_NUMBER_ID
+#   npx wrangler secret put SHARED_SECRET
+# Optional plain vars:
+# [vars]
+# TEMPLATE_NAME = "client_case_update"
+# GRAPH_VERSION = "v23.0"

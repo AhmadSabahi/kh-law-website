@@ -847,6 +847,7 @@ tr.r-late:hover{background:#F5E0E0}
       if(isEdit){
         commitRow(editRow,cells,status,iso);applyLang(editRow);
         logAudit(CURRENT_USER.ar+' عدّل جلسة',CURRENT_USER.en+' edited a hearing');
+        notifyClientUpdate({client:c,phone:v('aj-phone'),caseNo:v('aj-num'),nextHearing:dm,finalDecision:fin});
       }else{
         var tr=document.createElement('tr');tr.dataset.date=iso;
         cells.forEach(function(td){tr.appendChild(td)});addActionsCell(tr);
@@ -884,6 +885,27 @@ tr.r-late:hover{background:#F5E0E0}
     document.getElementById('addPanel').classList.remove('show');
     showToast(isEdit?'تم حفظ التعديلات':'تمت الإضافة بنجاح',isEdit?'Changes saved':'Added successfully');
   }
+  // ---- WhatsApp update notification (sent via the backend worker in /backend) ----
+  // Inactive until WA.url is set after the worker is deployed (see backend/README.md).
+  var WA={url:localStorage.getItem('kh_wa_url')||'',secret:localStorage.getItem('kh_wa_secret')||''};
+  function notifyClientUpdate(d){
+    if(!WA.url)return;
+    var ph=(d.phone||'').trim();
+    if(!ph||ph==='لا يوجد'||ph==='None')return;
+    fetch(WA.url,{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({secret:WA.secret,client:d.client,phone:ph,caseNo:d.caseNo,nextHearing:d.nextHearing,finalDecision:d.finalDecision})})
+      .then(function(r){return r.json()})
+      .then(function(j){
+        if(j&&j.ok){
+          showToast('تم الحفظ وإرسال التحديث للموكّل عبر واتساب','Saved and sent to the client on WhatsApp');
+          logAudit(CURRENT_USER.ar+' أرسل تحديثاً للموكّل عبر واتساب',CURRENT_USER.en+' sent a WhatsApp update to the client');
+        }else{
+          showToast('تم الحفظ، لكن تعذّر إرسال الواتساب','Saved, but the WhatsApp message failed');
+        }
+      })
+      ['catch'](function(){showToast('تم الحفظ، لكن تعذّر إرسال الواتساب','Saved, but the WhatsApp message failed');});
+  }
+
   // editing a client in the sessions tab asks for confirmation before saving
   var cfm=document.getElementById('cfmModal');
   function closeConfirm(){cfm.classList.remove('show');}
