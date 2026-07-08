@@ -112,6 +112,14 @@ tbody tr:hover{background:#f7fbfb}
 .foot{text-align:center;font-size:12px;color:var(--muted);margin-top:18px}
 .toast{position:fixed;top:24px;left:50%;transform:translateX(-50%) translateY(-20px);background:var(--brand);color:#fff;padding:12px 22px;border-radius:12px;font-size:14px;font-weight:500;box-shadow:0 8px 30px rgba(15,76,92,.3);opacity:0;pointer-events:none;transition:.3s;z-index:50}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.cfm{position:fixed;inset:0;background:rgba(14,74,89,.45);display:none;align-items:center;justify-content:center;padding:20px;z-index:60}
+.cfm.show{display:flex}
+.cfm-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow-lg);width:100%;max-width:420px;padding:26px 24px;text-align:center;animation:cfmIn .18s ease-out}
+@keyframes cfmIn{from{opacity:0;transform:translateY(10px) scale(.97)}to{opacity:1;transform:none}}
+.cfm-card h3{margin:0 0 10px;font-size:18px;color:var(--brand)}
+.cfm-card p{margin:0 0 20px;font-size:14px;color:var(--muted);line-height:1.7}
+.cfm-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.cfm-actions .btn{min-width:130px;justify-content:center}
 .fbar{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}
 .fbtn{font-family:inherit;font-size:13px;padding:6px 14px;border-radius:30px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;transition:.15s}
 .fbtn:hover{border-color:var(--accent)}
@@ -262,6 +270,7 @@ tr.r-late:hover{background:#F5E0E0}
         <div id="fields-j">
           <div class="formgrid">
             <div class="ff"><label data-ar="الموكّل" data-en="Client">الموكّل</label><input id="aj-client" type="text"></div>
+            <div class="ff"><label data-ar="رقم الهاتف" data-en="Phone">رقم الهاتف</label><input id="aj-phone" type="tel"></div>
             <div class="ff"><label data-ar="الخصم" data-en="Opponent">الخصم</label><input id="aj-opp" type="text"></div>
             <div class="ff"><label data-ar="رقم القضية" data-en="Case no.">رقم القضية</label><input id="aj-num" type="text"></div>
             <div class="ff"><label data-ar="الجلسة القادمة" data-en="Next hearing">الجلسة القادمة</label><input id="aj-next-date" type="date"></div>
@@ -298,6 +307,7 @@ tr.r-late:hover{background:#F5E0E0}
         <div class="tablewrap"><table>
           <thead><tr>
             <th data-ar="الموكّل" data-en="Client">الموكّل</th>
+            <th data-ar="رقم الهاتف" data-en="Phone">رقم الهاتف</th>
             <th data-ar="الخصم" data-en="Opponent">الخصم</th>
             <th data-ar="رقم القضية" data-en="Case no.">رقم القضية</th>
             <th data-ar="الجلسة القادمة" data-en="Next hearing">الجلسة القادمة</th>
@@ -305,12 +315,12 @@ tr.r-late:hover{background:#F5E0E0}
             <th data-ar="إجراءات" data-en="Actions">إجراءات</th>
           </tr></thead>
           <tbody id="tb-j">
-            <tr data-date="2025-06-02"><td data-ar="محمد البادي" data-en="Mohammed Al Badi">محمد البادي</td><td data-ar="شركة النور" data-en="Al Noor Co.">شركة النور</td><td data-ar="2024/289" data-en="2024/289">2024/289</td><td data-ar="2/6/2025" data-en="2/6/2025">2/6/2025</td><td data-ar="لا يوجد" data-en="None">لا يوجد</td></tr>
-            <tr data-date="2025-06-05"><td data-ar="مؤسسة ظفار للتجارة" data-en="Dhofar Trading Est.">مؤسسة ظفار للتجارة</td><td data-ar="شركة الساحل" data-en="Al Sahel Co.">شركة الساحل</td><td data-ar="2025/120" data-en="2025/120">2025/120</td><td data-ar="5/6/2025" data-en="5/6/2025">5/6/2025</td><td data-ar="لا يوجد" data-en="None">لا يوجد</td></tr>
-            <tr data-date="2025-06-06"><td data-ar="شركة الواحة للتجارة" data-en="Al Waha Trading Co.">شركة الواحة للتجارة</td><td data-ar="مؤسسة النخيل" data-en="Al Nakheel Est.">مؤسسة النخيل</td><td data-ar="2025/47" data-en="2025/47">2025/47</td><td data-ar="6/6/2025" data-en="6/6/2025">6/6/2025</td><td data-ar="لا يوجد" data-en="None">لا يوجد</td></tr>
-            <tr data-date="2025-06-12"><td data-ar="أحمد بن سالم الحارثي" data-en="Ahmed Al Harthy">أحمد بن سالم الحارثي</td><td data-ar="بنك الخليج" data-en="Gulf Bank">بنك الخليج</td><td data-ar="2024/312" data-en="2024/312">2024/312</td><td data-ar="12/6/2025" data-en="12/6/2025">12/6/2025</td><td data-ar="لا يوجد" data-en="None">لا يوجد</td></tr>
-            <tr data-date="2025-07-20"><td data-ar="مؤسسة بهلاء للمقاولات" data-en="Bahla Contracting">مؤسسة بهلاء للمقاولات</td><td data-ar="شركة الإنشاء الحديث" data-en="Modern Construction">شركة الإنشاء الحديث</td><td data-ar="2025/88" data-en="2025/88">2025/88</td><td data-ar="20/7/2025" data-en="20/7/2025">20/7/2025</td><td data-ar="لا يوجد" data-en="None">لا يوجد</td></tr>
-            <tr data-date=""><td data-ar="خديجة الراشدي" data-en="Khadija Al Rashdi">خديجة الراشدي</td><td data-ar="ورثة المرحوم" data-en="The heirs">ورثة المرحوم</td><td data-ar="2023/201" data-en="2023/201">2023/201</td><td data-ar="لا يوجد" data-en="None">لا يوجد</td><td data-ar="صدر الحكم" data-en="Judgment issued">صدر الحكم</td></tr>
+            <tr data-date="2025-06-02"><td data-ar="محمد البادي" data-en="Mohammed Al Badi">محمد البادي</td><td data-ar="99458712" data-en="99458712">99458712</td><td data-ar="شركة النور" data-en="Al Noor Co.">شركة النور</td><td data-ar="2024/289" data-en="2024/289">2024/289</td><td data-ar="2/6/2025" data-en="2/6/2025">2/6/2025</td><td data-ar="لا يوجد" data-en="None">لا يوجد</td></tr>
+            <tr data-date="2025-06-05"><td data-ar="مؤسسة ظفار للتجارة" data-en="Dhofar Trading Est.">مؤسسة ظفار للتجارة</td><td data-ar="92104583" data-en="92104583">92104583</td><td data-ar="شركة الساحل" data-en="Al Sahel Co.">شركة الساحل</td><td data-ar="2025/120" data-en="2025/120">2025/120</td><td data-ar="5/6/2025" data-en="5/6/2025">5/6/2025</td><td data-ar="لا يوجد" data-en="None">لا يوجد</td></tr>
+            <tr data-date="2025-06-06"><td data-ar="شركة الواحة للتجارة" data-en="Al Waha Trading Co.">شركة الواحة للتجارة</td><td data-ar="95672149" data-en="95672149">95672149</td><td data-ar="مؤسسة النخيل" data-en="Al Nakheel Est.">مؤسسة النخيل</td><td data-ar="2025/47" data-en="2025/47">2025/47</td><td data-ar="6/6/2025" data-en="6/6/2025">6/6/2025</td><td data-ar="لا يوجد" data-en="None">لا يوجد</td></tr>
+            <tr data-date="2025-06-12"><td data-ar="أحمد بن سالم الحارثي" data-en="Ahmed Al Harthy">أحمد بن سالم الحارثي</td><td data-ar="99310246" data-en="99310246">99310246</td><td data-ar="بنك الخليج" data-en="Gulf Bank">بنك الخليج</td><td data-ar="2024/312" data-en="2024/312">2024/312</td><td data-ar="12/6/2025" data-en="12/6/2025">12/6/2025</td><td data-ar="لا يوجد" data-en="None">لا يوجد</td></tr>
+            <tr data-date="2025-07-20"><td data-ar="مؤسسة بهلاء للمقاولات" data-en="Bahla Contracting">مؤسسة بهلاء للمقاولات</td><td data-ar="96825417" data-en="96825417">96825417</td><td data-ar="شركة الإنشاء الحديث" data-en="Modern Construction">شركة الإنشاء الحديث</td><td data-ar="2025/88" data-en="2025/88">2025/88</td><td data-ar="20/7/2025" data-en="20/7/2025">20/7/2025</td><td data-ar="لا يوجد" data-en="None">لا يوجد</td></tr>
+            <tr data-date=""><td data-ar="خديجة الراشدي" data-en="Khadija Al Rashdi">خديجة الراشدي</td><td data-ar="91738052" data-en="91738052">91738052</td><td data-ar="ورثة المرحوم" data-en="The heirs">ورثة المرحوم</td><td data-ar="2023/201" data-en="2023/201">2023/201</td><td data-ar="لا يوجد" data-en="None">لا يوجد</td><td data-ar="صدر الحكم" data-en="Judgment issued">صدر الحكم</td></tr>
           </tbody>
         </table></div>
       </div>
@@ -338,6 +348,17 @@ tr.r-late:hover{background:#F5E0E0}
   </div>
 </div>
 <div class="toast" id="toast"></div>
+
+<div class="cfm" id="cfmModal" role="dialog" aria-modal="true">
+  <div class="cfm-card">
+    <h3 data-ar="تأكيد التعديل" data-en="Confirm changes">تأكيد التعديل</h3>
+    <p data-ar="هل أنت متأكد من حفظ التعديلات على بيانات هذا الموكّل؟" data-en="Are you sure you want to save the changes to this client?">هل أنت متأكد من حفظ التعديلات على بيانات هذا الموكّل؟</p>
+    <div class="cfm-actions">
+      <button class="btn btn-p" id="cfmYes" data-ar="حفظ التعديلات" data-en="Save changes">حفظ التعديلات</button>
+      <button class="btn btn-o" id="cfmNo" data-ar="إلغاء" data-en="Cancel">إلغاء</button>
+    </div>
+  </div>
+</div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.3/dist/html2pdf.bundle.min.js"></script>
@@ -436,7 +457,7 @@ tr.r-late:hover{background:#F5E0E0}
 
   // a session is finished once it has a real final decision (not "لا يوجد"/"None")
   function hasFinal(r){
-    var c=r.children[4]; if(!c)return false;
+    var c=r.children[5]; if(!c)return false;
     var t=(c.getAttribute('data-ar')||c.textContent).trim();
     return t!==''&&t!=='لا يوجد'&&t!=='None';
   }
@@ -451,7 +472,7 @@ tr.r-late:hover{background:#F5E0E0}
       else if(d===1){cls='r-soon';ar='غداً';en='Tomorrow'}
       else return;
       r.classList.add(cls);
-      var cell=r.children[3]; // next-hearing cell
+      var cell=r.children[4]; // next-hearing cell
       var fl=document.createElement('span');fl.className='flag flag-'+cls.split('-')[1];
       fl.setAttribute('data-ar',ar);fl.setAttribute('data-en',en);fl.textContent=lang==='ar'?ar:en;
       cell.appendChild(fl);
@@ -533,7 +554,7 @@ tr.r-late:hover{background:#F5E0E0}
     });
     if(!best){bar.style.display='none';return;}
     bar.style.display='';
-    var caseNo=cellText(best.children[2]), client=cellText(best.children[0]);
+    var caseNo=cellText(best.children[3]), client=cellText(best.children[0]);
     if(lang==='ar'){
       var whenAr=bestDiff===0?'اليوم':(bestDiff===1?'غداً':('بتاريخ '+isoToDM(best.dataset.date)));
       span.textContent='تذكير: جلسة القضية '+caseNo+' '+whenAr+'، الموكّل: '+client;
@@ -731,7 +752,7 @@ tr.r-late:hover{background:#F5E0E0}
     document.querySelector('.tab[data-t="j"]').classList.add('on');secJ.classList.remove('hidden');secI.classList.add('hidden');
     activeFilter='all';updateTabUI();renderFilterBar();
     var tr=document.createElement('tr');tr.dataset.date='2025-06-25';
-    tr.innerHTML='<td data-ar="شركة الأمل ش.م.م" data-en="Al Amal LLC"></td><td data-ar="مؤسسة الفجر" data-en="Al Fajr Est."></td><td data-ar="2025/104" data-en="2025/104"></td><td data-ar="25/6/2025" data-en="25/6/2025"></td><td data-ar="لا يوجد" data-en="None"></td>';
+    tr.innerHTML='<td data-ar="شركة الأمل ش.م.م" data-en="Al Amal LLC"></td><td data-ar="93540126" data-en="93540126"></td><td data-ar="مؤسسة الفجر" data-en="Al Fajr Est."></td><td data-ar="2025/104" data-en="2025/104"></td><td data-ar="25/6/2025" data-en="25/6/2025"></td><td data-ar="لا يوجد" data-en="None"></td>';
     addActionsCell(tr);document.getElementById('tb-j').prepend(tr);applyLang(tr);
     document.getElementById('pastePanel').classList.remove('show');
     refresh();logAudit('المحامي خالد أضاف جلسة عبر اللصق','Khalid added a hearing via paste');
@@ -770,7 +791,7 @@ tr.r-late:hover{background:#F5E0E0}
   }
   function setSubmitLabel(ar,en){var s=document.querySelector('#addSubmit span');s.setAttribute('data-ar',ar);s.setAttribute('data-en',en);s.textContent=lang==='ar'?ar:en;}
   function clearAddForm(){
-    ['aj-client','aj-opp','aj-num','aj-next-date','aj-final','ai-name','ai-phone','ai-time'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
+    ['aj-client','aj-phone','aj-opp','aj-num','aj-next-date','aj-final','ai-name','ai-phone','ai-time'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
     ['ai-type','ai-pay','ai-status'].forEach(function(id){var el=document.getElementById(id);if(el)el.selectedIndex=0;});
   }
   function resetEditState(){editRow=null;setSubmitLabel('إضافة للجدول','Add to table');}
@@ -789,10 +810,11 @@ tr.r-late:hover{background:#F5E0E0}
     function nl(s){return (s==='لا يوجد'||s==='None')?'':s;}
     if(isJ){
       document.getElementById('aj-client').value=g(0);
-      document.getElementById('aj-opp').value=nl(g(1));
-      document.getElementById('aj-num').value=nl(g(2));
+      document.getElementById('aj-phone').value=nl(g(1));
+      document.getElementById('aj-opp').value=nl(g(2));
+      document.getElementById('aj-num').value=nl(g(3));
       document.getElementById('aj-next-date').value=tr.dataset.date||'';
-      document.getElementById('aj-final').value=nl(g(4));
+      document.getElementById('aj-final').value=nl(g(5));
     }else{
       document.getElementById('ai-name').value=g(0);
       document.getElementById('ai-phone').value=nl(g(1));
@@ -806,7 +828,7 @@ tr.r-late:hover{background:#F5E0E0}
     setSubmitLabel('حفظ التعديلات','Save changes');
     document.getElementById('addPanel').scrollIntoView({behavior:'smooth',block:'center'});
   }
-  document.getElementById('addSubmit').addEventListener('click',function(){
+  function doSubmit(){
     var isEdit=!!editRow, cells, status, iso;
     if(activeTab()==='j'){
       var c=v('aj-client');if(!c){document.getElementById('aj-client').focus();return}
@@ -816,6 +838,7 @@ tr.r-late:hover{background:#F5E0E0}
       status='';
       cells=[
         tdBoth(c,c),
+        tdBoth(v('aj-phone')||'لا يوجد',v('aj-phone')||'None'),
         tdBoth(v('aj-opp')||'لا يوجد',v('aj-opp')||'None'),
         tdBoth(v('aj-num')||'لا يوجد',v('aj-num')||'None'),
         tdBoth(dm||'لا يوجد',dm||'None'),
@@ -860,7 +883,21 @@ tr.r-late:hover{background:#F5E0E0}
     activeFilter='all';renderFilterBar();refresh();
     document.getElementById('addPanel').classList.remove('show');
     showToast(isEdit?'تم حفظ التعديلات':'تمت الإضافة بنجاح',isEdit?'Changes saved':'Added successfully');
+  }
+  // editing a client in the sessions tab asks for confirmation before saving
+  var cfm=document.getElementById('cfmModal');
+  function closeConfirm(){cfm.classList.remove('show');}
+  document.getElementById('addSubmit').addEventListener('click',function(){
+    if(editRow&&activeTab()==='j'){
+      if(!v('aj-client')){document.getElementById('aj-client').focus();return}
+      cfm.classList.add('show');return;
+    }
+    doSubmit();
   });
+  document.getElementById('cfmYes').addEventListener('click',function(){closeConfirm();doSubmit();});
+  document.getElementById('cfmNo').addEventListener('click',closeConfirm);
+  cfm.addEventListener('click',function(e){if(e.target===cfm)closeConfirm();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeConfirm();});
 
   document.getElementById('tb-j').addEventListener('click',function(e){
     var ed=e.target.closest('.act-edit'),dl=e.target.closest('.act-del');
