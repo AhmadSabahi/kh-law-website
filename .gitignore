@@ -1,2 +1,4 @@
 .DS_Store
 scratchpad/
+backend/.secrets.local
+node_modules/
