@@ -69,15 +69,18 @@ export default {
       to,
       type: 'template',
       template: {
-        name: env.TEMPLATE_NAME || 'client_case_update',
+        name: env.TEMPLATE_NAME || 'client_case_update_v2',
         language: { code: 'ar' },
         components: [{
           type: 'body',
           parameters: [
-            { type: 'text', text: nz(body.client) },        // {{1}} client name
-            { type: 'text', text: nz(body.caseNo) },        // {{2}} case number
-            { type: 'text', text: nz(body.nextHearing) },   // {{3}} next hearing
-            { type: 'text', text: nz(body.finalDecision) }  // {{4}} final decision
+            { type: 'text', text: nz(body.date) },      // {{1}} date (today)
+            { type: 'text', text: nz(body.court) },     // {{2}} court
+            { type: 'text', text: nz(body.caseNo) },    // {{3}} case number
+            { type: 'text', text: nz(body.officeNo) },  // {{4}} office file number
+            { type: 'text', text: nz(body.client) },    // {{5}} client (plaintiff)
+            { type: 'text', text: nz(body.opponent) },  // {{6}} opponent (defendant)
+            { type: 'text', text: nz(body.update) }     // {{7}} the update text
           ]
         }]
       }

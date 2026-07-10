@@ -143,9 +143,11 @@ tr.r-late:hover{background:#F5E0E0}
 .audit-time{color:var(--muted);font-size:12px;margin-inline-start:auto;white-space:nowrap}
 .hidden{display:none}
 .formgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.ff.ff-wide{grid-column:1 / -1}
 .ff label{display:block;font-size:13px;color:var(--muted);margin-bottom:5px;text-align:start}
-.ff input,.ff select{width:100%;font-family:inherit;font-size:14px;padding:9px 12px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink);text-align:start}
-.ff input:focus,.ff select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(46,140,163,.14)}
+.ff input,.ff select,.ff textarea{width:100%;font-family:inherit;font-size:14px;padding:9px 12px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink);text-align:start}
+.ff textarea{resize:vertical;min-height:44px;line-height:1.6}
+.ff input:focus,.ff select:focus,.ff textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(46,140,163,.14)}
 @media(max-width:560px){.formgrid{grid-template-columns:1fr}}
 /* ==== responsive: compact metrics + tidy toolbar/filters on phones ==== */
 @media(max-width:720px){
@@ -219,11 +221,6 @@ tr.r-late:hover{background:#F5E0E0}
       </div>
     </header>
 
-    <div class="remind" id="remindBar">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3H4a4 4 0 0 0 2-3v-3a7 7 0 0 1 4-6"/><path d="M9 17v1a3 3 0 0 0 6 0v-1"/></svg>
-      <span id="remindText"></span>
-    </div>
-
     <div class="body">
       <div class="metrics">
         <div class="metric"><div class="lbl" data-ar="قضايا نشطة" data-en="Active cases">قضايا نشطة</div><div class="num">18</div></div>
@@ -272,9 +269,10 @@ tr.r-late:hover{background:#F5E0E0}
             <div class="ff"><label data-ar="الموكّل" data-en="Client">الموكّل</label><input id="aj-client" type="text"></div>
             <div class="ff"><label data-ar="رقم الهاتف" data-en="Phone">رقم الهاتف</label><input id="aj-phone" type="tel"></div>
             <div class="ff"><label data-ar="الخصم" data-en="Opponent">الخصم</label><input id="aj-opp" type="text"></div>
+            <div class="ff"><label data-ar="المحكمة" data-en="Court">المحكمة</label><input id="aj-court" type="text"></div>
             <div class="ff"><label data-ar="رقم القضية" data-en="Case no.">رقم القضية</label><input id="aj-num" type="text"></div>
-            <div class="ff"><label data-ar="الجلسة القادمة" data-en="Next hearing">الجلسة القادمة</label><input id="aj-next-date" type="date"></div>
-            <div class="ff"><label data-ar="القرار النهائي" data-en="Final decision">القرار النهائي</label><input id="aj-final" type="text"></div>
+            <div class="ff"><label data-ar="رقم الملف بالمكتب" data-en="Office file no.">رقم الملف بالمكتب</label><input id="aj-office" type="text"></div>
+            <div class="ff ff-wide"><label data-ar="التحديث" data-en="Update">التحديث</label><textarea id="aj-update" rows="2" data-ar-ph="مثال: للتعقيب بتاريخ 22/7/2026" data-en-ph="e.g. Follow-up on 22/7/2026" placeholder="مثال: للتعقيب بتاريخ 22/7/2026"></textarea></div>
           </div>
         </div>
         <div id="fields-i" style="display:none">
@@ -309,18 +307,19 @@ tr.r-late:hover{background:#F5E0E0}
             <th data-ar="الموكّل" data-en="Client">الموكّل</th>
             <th data-ar="رقم الهاتف" data-en="Phone">رقم الهاتف</th>
             <th data-ar="الخصم" data-en="Opponent">الخصم</th>
+            <th data-ar="المحكمة" data-en="Court">المحكمة</th>
             <th data-ar="رقم القضية" data-en="Case no.">رقم القضية</th>
-            <th data-ar="الجلسة القادمة" data-en="Next hearing">الجلسة القادمة</th>
-            <th data-ar="القرار النهائي" data-en="Final decision">القرار النهائي</th>
+            <th data-ar="رقم الملف بالمكتب" data-en="Office file no.">رقم الملف بالمكتب</th>
+            <th data-ar="التحديث" data-en="Update">التحديث</th>
             <th data-ar="إجراءات" data-en="Actions">إجراءات</th>
           </tr></thead>
           <tbody id="tb-j">
-            <tr data-date="2025-06-02"><td data-ar="محمد البادي" data-en="Mohammed Al Badi">محمد البادي</td><td data-ar="99458712" data-en="99458712">99458712</td><td data-ar="شركة النور" data-en="Al Noor Co.">شركة النور</td><td data-ar="2024/289" data-en="2024/289">2024/289</td><td data-ar="2/6/2025" data-en="2/6/2025">2/6/2025</td><td data-ar="لا يوجد" data-en="None">لا يوجد</td></tr>
-            <tr data-date="2025-06-05"><td data-ar="مؤسسة ظفار للتجارة" data-en="Dhofar Trading Est.">مؤسسة ظفار للتجارة</td><td data-ar="92104583" data-en="92104583">92104583</td><td data-ar="شركة الساحل" data-en="Al Sahel Co.">شركة الساحل</td><td data-ar="2025/120" data-en="2025/120">2025/120</td><td data-ar="5/6/2025" data-en="5/6/2025">5/6/2025</td><td data-ar="لا يوجد" data-en="None">لا يوجد</td></tr>
-            <tr data-date="2025-06-06"><td data-ar="شركة الواحة للتجارة" data-en="Al Waha Trading Co.">شركة الواحة للتجارة</td><td data-ar="95672149" data-en="95672149">95672149</td><td data-ar="مؤسسة النخيل" data-en="Al Nakheel Est.">مؤسسة النخيل</td><td data-ar="2025/47" data-en="2025/47">2025/47</td><td data-ar="6/6/2025" data-en="6/6/2025">6/6/2025</td><td data-ar="لا يوجد" data-en="None">لا يوجد</td></tr>
-            <tr data-date="2025-06-12"><td data-ar="أحمد بن سالم الحارثي" data-en="Ahmed Al Harthy">أحمد بن سالم الحارثي</td><td data-ar="99310246" data-en="99310246">99310246</td><td data-ar="بنك الخليج" data-en="Gulf Bank">بنك الخليج</td><td data-ar="2024/312" data-en="2024/312">2024/312</td><td data-ar="12/6/2025" data-en="12/6/2025">12/6/2025</td><td data-ar="لا يوجد" data-en="None">لا يوجد</td></tr>
-            <tr data-date="2025-07-20"><td data-ar="مؤسسة بهلاء للمقاولات" data-en="Bahla Contracting">مؤسسة بهلاء للمقاولات</td><td data-ar="96825417" data-en="96825417">96825417</td><td data-ar="شركة الإنشاء الحديث" data-en="Modern Construction">شركة الإنشاء الحديث</td><td data-ar="2025/88" data-en="2025/88">2025/88</td><td data-ar="20/7/2025" data-en="20/7/2025">20/7/2025</td><td data-ar="لا يوجد" data-en="None">لا يوجد</td></tr>
-            <tr data-date=""><td data-ar="خديجة الراشدي" data-en="Khadija Al Rashdi">خديجة الراشدي</td><td data-ar="91738052" data-en="91738052">91738052</td><td data-ar="ورثة المرحوم" data-en="The heirs">ورثة المرحوم</td><td data-ar="2023/201" data-en="2023/201">2023/201</td><td data-ar="لا يوجد" data-en="None">لا يوجد</td><td data-ar="صدر الحكم" data-en="Judgment issued">صدر الحكم</td></tr>
+            <tr data-date="2026-07-01"><td data-ar="مؤسسة ظفار للتجارة" data-en="Dhofar Trading Est.">مؤسسة ظفار للتجارة</td><td data-ar="92104583" data-en="92104583">92104583</td><td data-ar="شركة الساحل" data-en="Al Sahel Co.">شركة الساحل</td><td data-ar="محكمة الاستثمار والتجارة (الابتدائية)" data-en="Investment & Commerce Court (Primary)">محكمة الاستثمار والتجارة (الابتدائية)</td><td data-ar="1234/101/2026" data-en="1234/101/2026">1234/101/2026</td><td data-ar="2026/1" data-en="2026/1">2026/1</td><td data-ar="للتعقيب بتاريخ 22/7/2026" data-en="Follow-up on 22/7/2026">للتعقيب بتاريخ 22/7/2026</td></tr>
+            <tr data-date="2026-06-28"><td data-ar="محمد البادي" data-en="Mohammed Al Badi">محمد البادي</td><td data-ar="99458712" data-en="99458712">99458712</td><td data-ar="شركة النور" data-en="Al Noor Co.">شركة النور</td><td data-ar="محكمة مسقط الابتدائية" data-en="Muscat Primary Court">محكمة مسقط الابتدائية</td><td data-ar="2289/205/2026" data-en="2289/205/2026">2289/205/2026</td><td data-ar="2026/14" data-en="2026/14">2026/14</td><td data-ar="تأجيل لتقديم مذكرة بتاريخ 15/7/2026" data-en="Adjourned for memo on 15/7/2026">تأجيل لتقديم مذكرة بتاريخ 15/7/2026</td></tr>
+            <tr data-date="2026-06-25"><td data-ar="أحمد بن سالم الحارثي" data-en="Ahmed Al Harthy">أحمد بن سالم الحارثي</td><td data-ar="99310246" data-en="99310246">99310246</td><td data-ar="بنك الخليج" data-en="Gulf Bank">بنك الخليج</td><td data-ar="محكمة الاستئناف بمسقط" data-en="Muscat Court of Appeal">محكمة الاستئناف بمسقط</td><td data-ar="312/118/2026" data-en="312/118/2026">312/118/2026</td><td data-ar="2026/9" data-en="2026/9">2026/9</td><td data-ar="حجز للحكم بتاريخ 30/7/2026" data-en="Reserved for judgment 30/7/2026">حجز للحكم بتاريخ 30/7/2026</td></tr>
+            <tr data-date="2026-06-20"><td data-ar="شركة الواحة للتجارة" data-en="Al Waha Trading Co.">شركة الواحة للتجارة</td><td data-ar="95672149" data-en="95672149">95672149</td><td data-ar="مؤسسة النخيل" data-en="Al Nakheel Est.">مؤسسة النخيل</td><td data-ar="محكمة صحار الابتدائية" data-en="Sohar Primary Court">محكمة صحار الابتدائية</td><td data-ar="847/101/2026" data-en="847/101/2026">847/101/2026</td><td data-ar="2026/6" data-en="2026/6">2026/6</td><td data-ar="للتعقيب بتاريخ 18/7/2026" data-en="Follow-up on 18/7/2026">للتعقيب بتاريخ 18/7/2026</td></tr>
+            <tr data-date="2026-06-12"><td data-ar="مؤسسة بهلاء للمقاولات" data-en="Bahla Contracting">مؤسسة بهلاء للمقاولات</td><td data-ar="96825417" data-en="96825417">96825417</td><td data-ar="شركة الإنشاء الحديث" data-en="Modern Construction">شركة الإنشاء الحديث</td><td data-ar="محكمة نزوى الابتدائية" data-en="Nizwa Primary Court">محكمة نزوى الابتدائية</td><td data-ar="588/101/2025" data-en="588/101/2025">588/101/2025</td><td data-ar="2025/22" data-en="2025/22">2025/22</td><td data-ar="تأجيل بناءً على طلب الخصم" data-en="Adjourned at opponent's request">تأجيل بناءً على طلب الخصم</td></tr>
+            <tr data-date="2026-05-30"><td data-ar="خديجة الراشدي" data-en="Khadija Al Rashdi">خديجة الراشدي</td><td data-ar="91738052" data-en="91738052">91738052</td><td data-ar="ورثة المرحوم" data-en="The heirs">ورثة المرحوم</td><td data-ar="محكمة مسقط الابتدائية" data-en="Muscat Primary Court">محكمة مسقط الابتدائية</td><td data-ar="201/103/2023" data-en="201/103/2023">201/103/2023</td><td data-ar="2023/31" data-en="2023/31">2023/31</td><td data-ar="صدر الحكم لصالح الموكّل" data-en="Judgment issued for the client">صدر الحكم لصالح الموكّل</td></tr>
           </tbody>
         </table></div>
       </div>
@@ -455,36 +454,14 @@ tr.r-late:hover{background:#F5E0E0}
     });
   }
 
-  // a session is finished once it has a real final decision (not "لا يوجد"/"None")
-  function hasFinal(r){
-    var c=r.children[5]; if(!c)return false;
-    var t=(c.getAttribute('data-ar')||c.textContent).trim();
-    return t!==''&&t!=='لا يوجد'&&t!=='None';
-  }
-  function decorateSessions(){
-    secJ.querySelectorAll('tbody tr').forEach(function(r){
-      r.classList.remove('r-today','r-soon','r-late');
-      var f=r.querySelector('.flag'); if(f)f.remove();
-      if(!r.dataset.date||hasFinal(r))return;
-      var d=diffDays(r.dataset.date); var cls,ar,en;
-      if(d<0){cls='r-late';ar='متأخرة';en='Overdue'}
-      else if(d===0){cls='r-today';ar='اليوم';en='Today'}
-      else if(d===1){cls='r-soon';ar='غداً';en='Tomorrow'}
-      else return;
-      r.classList.add(cls);
-      var cell=r.children[4]; // next-hearing cell
-      var fl=document.createElement('span');fl.className='flag flag-'+cls.split('-')[1];
-      fl.setAttribute('data-ar',ar);fl.setAttribute('data-en',en);fl.textContent=lang==='ar'?ar:en;
-      cell.appendChild(fl);
-    });
-  }
+  // sort by update date, newest first; undated rows sink to the bottom
   function sortByDate(tbId){
     var tb=document.getElementById(tbId);
     var rows=Array.prototype.slice.call(tb.children);
     rows.sort(function(a,b){
-      var da=a.dataset.date?new Date(a.dataset.date).getTime():Infinity;
-      var db=b.dataset.date?new Date(b.dataset.date).getTime():Infinity;
-      return da-db;
+      var da=a.dataset.date?new Date(a.dataset.date).getTime():-Infinity;
+      var db=b.dataset.date?new Date(b.dataset.date).getTime():-Infinity;
+      return db-da;
     });
     rows.forEach(function(r){tb.appendChild(r)});
   }
@@ -540,29 +517,7 @@ tr.r-late:hover{background:#F5E0E0}
     }else{ emptyEl.style.display='none'; wrap.style.display=''; }
     renderPager(total,pages,start,end);
   }
-  function refresh(){ if(activeTab()==='j'){sortByDate('tb-j');decorateSessions();}else{sortByDate('tb-i');} filter(); renderReminder(); }
-
-  // real reminder: shows the soonest upcoming hearing (today/tomorrow/date) from the sessions table.
-  // updates automatically whenever sessions are added, edited, deleted or confirmed.
-  function renderReminder(){
-    var bar=document.getElementById('remindBar'), span=document.getElementById('remindText');
-    var best=null, bestDiff=Infinity;
-    Array.prototype.forEach.call(document.getElementById('tb-j').children,function(r){
-      if(!r.dataset.date||hasFinal(r))return;
-      var d=diffDays(r.dataset.date);
-      if(d>=0&&d<bestDiff){bestDiff=d;best=r;}
-    });
-    if(!best){bar.style.display='none';return;}
-    bar.style.display='';
-    var caseNo=cellText(best.children[3]), client=cellText(best.children[0]);
-    if(lang==='ar'){
-      var whenAr=bestDiff===0?'اليوم':(bestDiff===1?'غداً':('بتاريخ '+isoToDM(best.dataset.date)));
-      span.textContent='تذكير: جلسة القضية '+caseNo+' '+whenAr+'، الموكّل: '+client;
-    }else{
-      var whenEn=bestDiff===0?'today':(bestDiff===1?'tomorrow':('on '+isoToDM(best.dataset.date)));
-      span.textContent='Reminder: hearing for case '+caseNo+' '+whenEn+', client: '+client;
-    }
-  }
+  function refresh(){ sortByDate(activeTab()==='j'?'tb-j':'tb-i'); filter(); }
 
   function updateTabUI(){
     var j=activeTab()==='j';
@@ -751,8 +706,8 @@ tr.r-late:hover{background:#F5E0E0}
     document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
     document.querySelector('.tab[data-t="j"]').classList.add('on');secJ.classList.remove('hidden');secI.classList.add('hidden');
     activeFilter='all';updateTabUI();renderFilterBar();
-    var tr=document.createElement('tr');tr.dataset.date='2025-06-25';
-    tr.innerHTML='<td data-ar="شركة الأمل ش.م.م" data-en="Al Amal LLC"></td><td data-ar="93540126" data-en="93540126"></td><td data-ar="مؤسسة الفجر" data-en="Al Fajr Est."></td><td data-ar="2025/104" data-en="2025/104"></td><td data-ar="25/6/2025" data-en="25/6/2025"></td><td data-ar="لا يوجد" data-en="None"></td>';
+    var tr=document.createElement('tr');tr.dataset.date=toISO(new Date());
+    tr.innerHTML='<td data-ar="شركة الأمل ش.م.م" data-en="Al Amal LLC"></td><td data-ar="93540126" data-en="93540126"></td><td data-ar="مؤسسة الفجر" data-en="Al Fajr Est."></td><td data-ar="محكمة مسقط الابتدائية" data-en="Muscat Primary Court"></td><td data-ar="2026/104" data-en="2026/104"></td><td data-ar="2026/18" data-en="2026/18"></td><td data-ar="جلسة أولى محددة للمرافعة" data-en="First hearing set for pleading"></td>';
     addActionsCell(tr);document.getElementById('tb-j').prepend(tr);applyLang(tr);
     document.getElementById('pastePanel').classList.remove('show');
     refresh();logAudit('المحامي خالد أضاف جلسة عبر اللصق','Khalid added a hearing via paste');
@@ -791,7 +746,7 @@ tr.r-late:hover{background:#F5E0E0}
   }
   function setSubmitLabel(ar,en){var s=document.querySelector('#addSubmit span');s.setAttribute('data-ar',ar);s.setAttribute('data-en',en);s.textContent=lang==='ar'?ar:en;}
   function clearAddForm(){
-    ['aj-client','aj-phone','aj-opp','aj-num','aj-next-date','aj-final','ai-name','ai-phone','ai-time'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
+    ['aj-client','aj-phone','aj-opp','aj-court','aj-num','aj-office','aj-update','ai-name','ai-phone','ai-time'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
     ['ai-type','ai-pay','ai-status'].forEach(function(id){var el=document.getElementById(id);if(el)el.selectedIndex=0;});
   }
   function resetEditState(){editRow=null;setSubmitLabel('إضافة للجدول','Add to table');}
@@ -812,9 +767,10 @@ tr.r-late:hover{background:#F5E0E0}
       document.getElementById('aj-client').value=g(0);
       document.getElementById('aj-phone').value=nl(g(1));
       document.getElementById('aj-opp').value=nl(g(2));
-      document.getElementById('aj-num').value=nl(g(3));
-      document.getElementById('aj-next-date').value=tr.dataset.date||'';
-      document.getElementById('aj-final').value=nl(g(5));
+      document.getElementById('aj-court').value=nl(g(3));
+      document.getElementById('aj-num').value=nl(g(4));
+      document.getElementById('aj-office').value=nl(g(5));
+      document.getElementById('aj-update').value=nl(g(6));
     }else{
       document.getElementById('ai-name').value=g(0);
       document.getElementById('ai-phone').value=nl(g(1));
@@ -832,22 +788,23 @@ tr.r-late:hover{background:#F5E0E0}
     var isEdit=!!editRow, cells, status, iso;
     if(activeTab()==='j'){
       var c=v('aj-client');if(!c){document.getElementById('aj-client').focus();return}
-      iso=document.getElementById('aj-next-date').value;
-      var dm=iso?isoToDM(iso):'';
-      var fin=v('aj-final');
+      iso=toISO(new Date());                 // update date = today (auto)
+      var today=isoToDM(iso);
+      var court=v('aj-court'), num=v('aj-num'), office=v('aj-office'), upd=v('aj-update');
       status='';
       cells=[
         tdBoth(c,c),
         tdBoth(v('aj-phone')||'لا يوجد',v('aj-phone')||'None'),
         tdBoth(v('aj-opp')||'لا يوجد',v('aj-opp')||'None'),
-        tdBoth(v('aj-num')||'لا يوجد',v('aj-num')||'None'),
-        tdBoth(dm||'لا يوجد',dm||'None'),
-        tdBoth(fin||'لا يوجد',fin||'None')
+        tdBoth(court||'لا يوجد',court||'None'),
+        tdBoth(num||'لا يوجد',num||'None'),
+        tdBoth(office||'لا يوجد',office||'None'),
+        tdBoth(upd||'لا يوجد',upd||'None')
       ];
       if(isEdit){
         commitRow(editRow,cells,status,iso);applyLang(editRow);
         logAudit(CURRENT_USER.ar+' عدّل جلسة',CURRENT_USER.en+' edited a hearing');
-        notifyClientUpdate({client:c,phone:v('aj-phone'),caseNo:v('aj-num'),nextHearing:dm,finalDecision:fin});
+        notifyClientUpdate({client:c,phone:v('aj-phone'),date:today,court:court,caseNo:num,officeNo:office,opponent:v('aj-opp'),update:upd});
       }else{
         var tr=document.createElement('tr');tr.dataset.date=iso;
         cells.forEach(function(td){tr.appendChild(td)});addActionsCell(tr);
@@ -893,7 +850,7 @@ tr.r-late:hover{background:#F5E0E0}
     var ph=(d.phone||'').trim();
     if(!ph||ph==='لا يوجد'||ph==='None')return;
     fetch(WA.url,{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({secret:WA.secret,client:d.client,phone:ph,caseNo:d.caseNo,nextHearing:d.nextHearing,finalDecision:d.finalDecision})})
+      body:JSON.stringify({secret:WA.secret,phone:ph,date:d.date,court:d.court,caseNo:d.caseNo,officeNo:d.officeNo,client:d.client,opponent:d.opponent,update:d.update})})
       .then(function(r){return r.json()})
       .then(function(j){
         if(j&&j.ok){

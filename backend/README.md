@@ -23,18 +23,25 @@ dashboard.html ──POST──▶ Cloudflare Worker (this folder) ──▶ Met
 4. Business verification: Business Settings → Security Center → upload the CR/license.
    (Until verified: ~250 business-initiated messages/day — fine to start.)
 5. Create the message template (WhatsApp Manager → Message templates → Create):
-   - **Name:** `client_case_update` · **Category:** Utility · **Language:** Arabic
+   - **Name:** `client_case_update_v2` · **Category:** Utility · **Language:** Arabic
    - **Body:**
      ```
-     مرحباً {{1}}،
-     نفيدكم بأنه تم تحديث بيانات قضيتكم لدى شركة خالد الحبسي للمحاماة:
-     • رقم القضية: {{2}}
-     • الجلسة القادمة: {{3}}
-     • القرار النهائي: {{4}}
+     التاريخ: {{1}}
+     المحكمة: {{2}}
+     رقم القضية: {{3}}
+     رقم الملف بالمكتب: {{4}}
+     الأطراف:
+     موكّلنا: {{5}} (المدّعي)
+     ضدّ: {{6}} (المدّعى عليها)
 
-     مع تحيات شركة خالد الحبسي للمحاماة
+     التحديث:
+     {{7}}
+
+     شاكرين تعاونكم
+     شركة KH للمحاماة ⚖️
      ```
-   - Sample values for review: محمد البادي · 2024/289 · 2/6/2025 · لا يوجد
+   - Mapping: {{1}} date (today) · {{2}} court · {{3}} case no. · {{4}} office file no. · {{5}} client · {{6}} opponent · {{7}} update text
+   - Sample: 10/7/2026 · محكمة الاستثمار والتجارة (الابتدائية) · 1234/101/2026 · 2026/1 · مؤسسة ظفار للتجارة · شركة الساحل · للتعقيب بتاريخ 22/7/2026
 6. Collect two values from the app's **WhatsApp → API Setup** page:
    - **Phone number ID**
    - A **permanent access token** (Business Settings → System users → create system
